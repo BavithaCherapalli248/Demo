@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Courses</title>
+</head>
+<body>
+    <h1>Search Courses</h1>
+    <form th:action="@{/admin-dashboard/search-student/}" method="GET">
+    <label for="criteria">Search by:</label>
+    <select id="criteria" name="criteria">
+        <option value="firstName">Student First Name</option>
+        <option value="studentId">Student ID</option>
+    </select>
+    <input type="text" id="search" name="query">
+    <button type="submit">Search</button>
+</form>
+
+    
+<h1>List of Students</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th> <!-- New column for actions -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Loop through courses retrieved from the server and display them -->
+        <tr th:each="student : ${students}">
+            <td th:text="${student.studentId}">1</td>
+            <td th:text="${student.firstName}">Course A</td>
+            <td th:text="${student.lastName}">Description of Course A</td>
+            <td>
+                <form th:action="@{/admin-dashboard/confirm-remove/{studentId}(studentId=${student.studentId})}" method="get">
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

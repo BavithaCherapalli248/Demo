@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Student</title>
+</head>
+<body>
+    <h1>Enroll Student in a Course</h1>
+    <form th:action="@{/admin-dashboard/enroll-student/}" method="post">
+        <label for="studentId">Student ID:</label>
+        <select name="studentId" id="studentId">
+         
+        	<option th:each="student : ${students}" th:value="${student.studentId}" th:text="${student.firstName+ '  '+student.lastName}" id="${student.studentId}" name="studentId">
+        	
+        </select>
+        
+        <br>
+        <label for="courseId">Course ID:</label>
+        <select name="courseId" id="courseId">
+         
+        	<option th:each="course : ${courses}" th:value="${course.courseId}" th:text="${course.courseName}" id="${course.courseId}" name="courseId">
+        	
+        </select>
+        <br>
+        <button type="submit">Enroll</button>
+    </form>
+</body>
+</html>

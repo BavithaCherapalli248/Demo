@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Remove Course</title>
+</head>
+<body>
+    <h1>Confirm Remove Course</h1>
+    <p>Are you sure you want to remove the course <strong th:text="${course.courseName}"></strong>?</p>
+    <form th:action="@{/admin-dashboard/remove/{courseId}(courseId=${course.courseId})}" method="post">
+        <button type="submit">Yes, Remove</button>
+    </form>
+</body>
+</html>
+
